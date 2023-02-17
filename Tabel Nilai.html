@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Nilai</title>
+    <style>
+        table {
+            text-align: center;
+            width: 700px;
+        }
+        .tambah {
+            width: 300px;
+            height: 40px;
+            font-weight: bolder;
+            font-size: 20px;
+            margin-bottom:20px;
+        }
+        table td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="tambah" onclick="tambahNilai()">
+        Tambah Nilai
+    </button>
+    <button class="tambah" onclick="reset()">
+        Hapus Nilai
+    </button>
+    <table border="1px">
+        <thead>
+            <tr>
+                <td colspan="4">Daftar Nilai</td>
+            </tr>
+            <tr>
+                <td>No</td>
+                <td>Mata Pelajaran</td>
+                <td>Nilai Ulangan</td>
+                <td>Index Nilai</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        let number = 0;
+        
+        function getIndex(nilai) {
+            if (nilai >= 90) {
+                return "A";
+            } else if (nilai >= 80 && nilai < 90) {
+                return "B";
+            } else if (nilai >= 70 && nilai < 80) {
+                return "C";
+            } else if (nilai >= 60 && nilai < 70) {
+                return "D";
+            } else if (nilai < 60) {
+                return "E";
+            } else {
+                return "F";
+            }
+        }
+
+        function tambahNilai() {
+            const tbody = document.querySelector("tbody");
+            let tr = document.createElement("tr");
+            number++;
+            let tdNum = document.createElement("td");
+            tdNum.textContent = number;
+            let tdMapel = document.createElement("td");
+            tdMapel.textContent = prompt("Masukkan Mata Pelajaran");
+            let tdNilai = document.createElement("td");
+            tdNilai.textContent = prompt("Masukkan Nilai");
+            let tdIndex = document.createElement("td");
+            tdIndex.textContent = getIndex(tdNilai.textContent);
+            tr.appendChild(tdNum);
+            tr.appendChild(tdMapel);
+            tr.appendChild(tdNilai);
+            tr.appendChild(tdIndex);
+            tbody.appendChild(tr);
+        }
+
+        function reset() {
+            const tbody = document.querySelector("tbody");
+            tbody.innerHTML = "";
+            number = 0;
+        }
+    </script>
+</body>
+</html>
